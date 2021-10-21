@@ -1,13 +1,15 @@
 // app global styles
-import GlobalStyles from "./App.styles";
+import GlobalStyles from './App.styles';
 
-function App() {
+import PokemonContainer from 'src/components/PokemonContainer/PokemonContainer';
+
+const App = () => {
   return (
     <>
       <GlobalStyles />
-      <h1>We Start here</h1>
+      <PokemonContainer />
     </>
   );
-}
+};
 
 export default App;

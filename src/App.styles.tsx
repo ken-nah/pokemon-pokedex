@@ -1,9 +1,10 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
     :root {
      --color-white: #fff;
      --color-dark-blue: #233240;
+     --color-dark-gray: #808080;
      --color-light-gray: #f2f2f2;
      --color-pale-green: #84F280;
      --color-orange: #F27B35;
@@ -67,7 +68,7 @@ const GlobalStyles = createGlobalStyle`
      max-width: 100%;
      display: block;
      max-height: 100%;
-     object-fit: cover;
+     object-fit: fill;
    }
 
    input,

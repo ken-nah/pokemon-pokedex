@@ -14,13 +14,18 @@
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.3",
+    "swr": "^1.0.1",
     "typescript": "^4.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.{ts,tsx,json,js}\"",
+    "format": "yarn run prettier -- --write",
+    "lint": "eslint --ignore-path .gitignore .",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -41,6 +46,9 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.15"
+    "@types/styled-components": "^5.1.15",
+    "husky": ">=6",
+    "lint-staged": ">=10",
+    "prettier": "^2.4.1"
   }
 }
