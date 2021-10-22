@@ -4,4 +4,8 @@ function toTitleCase(word: string) {
   });
 }
 
-export { toTitleCase };
+function sanitizeText(text: string) {
+  return text.replace(/[^a-zA-Z0-9]/g, '');
+}
+
+export { sanitizeText, toTitleCase };

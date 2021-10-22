@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Pokemon } from 'src/utils/shared-types';
+import { Pokemon, PokemonInfo } from 'src/utils/shared-types';
 import useFetchPokemon from 'src/hooks/useFetchPokemons';
 
 import { Button, Container } from '../UI';
@@ -25,6 +25,7 @@ const Pagination = styled.div`
 
 const Pokemons: React.FC = () => {
   const [page, setPage] = React.useState(1);
+  const [selectedPokemon, setSelectedPokemon] = React.useState<PokemonInfo>();
   const { data, error } = useFetchPokemon<PokemonsData>({ page });
 
   const handlePreviousPage = () => {
@@ -33,6 +34,11 @@ const Pokemons: React.FC = () => {
 
   const handleNextPage = () => {
     setPage((prevPage) => prevPage + 1);
+  };
+
+  const handleSelectPokemon = (pokemon: PokemonInfo) => {
+    window.scrollTo(0, 0);
+    setSelectedPokemon(pokemon);
   };
 
   if (error) return <h2>Error</h2>;
@@ -47,6 +53,7 @@ const Pokemons: React.FC = () => {
               <PokemonCardPlaceholder key={index} />
             ))}
         </PokemonList>
+        <PokemonDetails pokemon={selectedPokemon} />
       </Container>
     );
 
@@ -55,7 +62,11 @@ const Pokemons: React.FC = () => {
       <div>
         <PokemonList>
           {data.results.map((pokemon) => (
-            <PokemonCard key={pokemon.name} pokemon={pokemon} />
+            <PokemonCard
+              key={pokemon.name}
+              pokemon={pokemon}
+              onClick={handleSelectPokemon}
+            />
           ))}
         </PokemonList>
         <Pagination>
@@ -71,7 +82,7 @@ const Pokemons: React.FC = () => {
           )}
         </Pagination>
       </div>
-      <PokemonDetails />
+      <PokemonDetails pokemon={selectedPokemon} />
     </Container>
   );
 };

@@ -18,6 +18,7 @@ const colors: Color = {
   fighting: '#999386',
   normal: '#F21B42',
   steel: '#a7a765',
+  ghost: '#aa5151',
 };
 
 type ButtonProps = {
