@@ -5,7 +5,8 @@ import useFetchPokemon from 'src/hooks/useFetchPokemons';
 import { Pokemon, PokemonInfo } from 'src/utils/shared-types';
 import { toTitleCase } from 'src/utils/helperFunctions';
 
-import Button from '../Button/Button';
+import Button from '../UI/Button';
+import PokemonCardPlaceholder from '../Placeholders/PokemonCard';
 
 type Props = {
   pokemon: Pokemon;
@@ -57,10 +58,10 @@ const PokemonTypes = styled.div`
 
 const PokemonCard: React.FC<Props> = (props) => {
   const { pokemon } = props;
-  const { data, error } = useFetchPokemon<PokemonInfo>(pokemon.name);
+  const { data, error } = useFetchPokemon<PokemonInfo>({ name: pokemon.name });
 
-  if (error) return <h1>Something went wrong..</h1>;
-  if (!data) return <h1>Loading...</h1>;
+  if (error) return <h2>Error..</h2>;
+  if (!data) return <PokemonCardPlaceholder />;
 
   return (
     <Card>

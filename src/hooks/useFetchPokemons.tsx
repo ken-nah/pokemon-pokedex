@@ -1,13 +1,22 @@
 import useSWR from 'swr';
 
+type URLConfig = {
+  name?: string;
+  page?: number;
+};
+
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const API_URL = 'https://pokeapi.co/api/v2/pokemon';
-const PAGE_LIMIT = 15;
+const apiURL = (config: URLConfig) => {
+  const PAGE_LIMIT = 12;
+  const URL = 'https://pokeapi.co/api/v2/pokemon';
+  const { name, page = 1 } = config;
 
-export default function useFetchPokemon<T>(name?: string) {
-  const URL = name ? `${API_URL}/${name}` : `${API_URL}?limit=${PAGE_LIMIT}`;
-  const { data, error } = useSWR<T>(URL, fetcher);
+  if (name) return `${URL}/${name}`;
+  return `${URL}?offset=${(page - 1) * PAGE_LIMIT}&limit=${PAGE_LIMIT}`;
+};
 
+export default function useFetchPokemon<T>(config: URLConfig = {}) {
+  const { data, error } = useSWR<T>(apiURL(config), fetcher);
   return { data, error };
 }

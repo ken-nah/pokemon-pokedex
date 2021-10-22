@@ -1,14 +1,16 @@
+import * as React from 'react';
+
 // app global styles
 import GlobalStyles from './App.styles';
 
-import PokemonContainer from 'src/components/PokemonContainer/PokemonContainer';
+import Pokemons from 'src/components/Pokemons/Pokemons';
 
 const App = () => {
   return (
-    <>
+    <React.Fragment>
       <GlobalStyles />
-      <PokemonContainer />
-    </>
+      <Pokemons />
+    </React.Fragment>
   );
 };
 
