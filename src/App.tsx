@@ -1,13 +1,17 @@
-// app global styles
-import GlobalStyles from "./App.styles";
+import * as React from 'react';
 
-function App() {
+// app global styles
+import GlobalStyles from './App.styles';
+
+import Pokemons from 'src/components/Pokemons/Pokemons';
+
+const App = () => {
   return (
-    <>
+    <React.Fragment>
       <GlobalStyles />
-      <h1>We Start here</h1>
-    </>
+      <Pokemons />
+    </React.Fragment>
   );
-}
+};
 
 export default App;
