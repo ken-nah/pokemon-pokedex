@@ -10,6 +10,7 @@ import PokemonCardPlaceholder from '../Placeholders/PokemonCard';
 
 type Props = {
   pokemon: Pokemon;
+  onClick: (pokemon: PokemonInfo) => void;
 };
 
 const Card = styled.div`
@@ -46,6 +47,7 @@ const PokemonDetails = styled.div`
   p {
     color: var(--color-dark-blue);
     font-weight: 700;
+    font-size: 1.4rem;
   }
 `;
 
@@ -64,7 +66,7 @@ const PokemonCard: React.FC<Props> = (props) => {
   if (!data) return <PokemonCardPlaceholder />;
 
   return (
-    <Card>
+    <Card onClick={() => props.onClick(data)}>
       <PokemonImage>
         <img src={data.sprites.front_default} alt="pokemon" />
       </PokemonImage>
